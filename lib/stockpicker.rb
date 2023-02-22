@@ -1,15 +1,15 @@
-def stock_picker(prices)
-    result = []
-    prices.each_with_index do |buy_val, i|
-        stocks = prices[i..]
-        high_val = stocks.max
-        low_val = stocks.min
-        highest_idx = prices[i..].each_with_index.max[1] + i
-        profit = [high_val - buy_val, i, highest_idx]
-        result.push(profit)
-    end
-    answer = result.max_by(&:first)
-    p answer[1..2]
+class Stocks
+  def stock_picker(prices)
+      result = []
+      prices.each_with_index do |price, i|
+          stocks = prices[i..]
+          high = stocks.max
+          high_idx = stocks.index(high) + i
+          profit = [high - price, i, high_idx]
+          result << profit
+      end
+      p result.max_by(&:first)[1..2]
+  end
 end
 
-stock_picker([17,3,6,9,15,8,6,1,10])
+Stocks.new.stock_picker([17,3,6,9,15,8,6,1,10])
