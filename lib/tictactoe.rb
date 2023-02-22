@@ -16,6 +16,10 @@ class Board
   def full?
     board.all? { |x| %w[X O].include?(x) }
   end
+
+  def valid?(choice)
+    %w(X O).each{|token| board[choice] != token}
+  end
 end
 
 class Game
@@ -58,17 +62,13 @@ class Game
 
   def update(player)
     position = player.select_position!
-    if valid?(position)
+    if board.valid?(position)
       puts "#{player.name} puts #{player.token} in position #{position + 1}"
       board.board[position] = player.token
     else
       puts 'Invalid! Choose Another Spot!'
       update(player)
     end
-  end
-
-  def valid?(choice)
-    %w(X O).each{|token| board.board[choice] != token}
   end
 
   def winner?(player)
