@@ -33,10 +33,6 @@ class Game
     players << player
   end
 
-  def current_player
-    players[current_player_id]
-  end
-
   def play
     loop do
       board.showboard
@@ -52,6 +48,12 @@ class Game
       end
       switch_players!
     end
+  end
+
+  private
+
+  def current_player
+    players[current_player_id]
   end
 
   def update(player)
