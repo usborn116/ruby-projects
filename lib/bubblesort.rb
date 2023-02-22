@@ -1,11 +1,15 @@
 # frozen_string_literal: true
+class Bubble
 
-def bubble_sort(array)
-  (array.length - 1).times do
-    (0...(array.length - 1)).each do |i|
-      array[i] > array[i + 1] ? (array[i], array[i + 1] = array[i + 1], array[i]) : next
+  def bubble_sort(arr)
+    until arr == arr.sort
+      arr[0...-1].each_with_index do |_n, i|
+        arr[i] > arr[i + 1] ? (arr[i], arr[i + 1] = arr[i + 1], arr[i]) : next
+      end
     end
+    p arr
   end
-  p array
+
 end
-bubble_sort([4, 3, 78, 2, 0, 2])
+
+Bubble.new.bubble_sort([4, 3, 78, 2, 0, 2])
